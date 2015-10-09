@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe 'apt::default'
+include_recipe 'apt'
 apt_repository 'mesosphere' do
   uri 'http://repos.mesosphere.io/ubuntu'
   components ['main']
