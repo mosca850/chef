@@ -27,6 +27,12 @@ end
 file "/etc/mesos/zk" do
   content "zk://"+node['ipaddress']+":2181/mesos"
 end
+directory '/etc/zookeeper/conf' do
+  owner 'root'
+  group 'root'
+  mode '0755'
+  action :create
+end
 file "/etc/zookeeper/conf/myid" do
   content "1"
 end
