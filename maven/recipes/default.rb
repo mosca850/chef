@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe 'apt'
+include_recipe 'apt::default'
 apt_repository 'mesosphere' do
   uri 'http://repos.mesosphere.io/ubuntu'
   components ['main']
@@ -15,6 +15,11 @@ apt_repository 'mesosphere' do
   distribution node['lsb']['codename']
   action :add
   deb_src false
+end
+execute "apt-get-update" do
+  command "apt-get update"
+  ignore_failure true
+  action :nothing
 end
 package 'mesosphere' do
   action :install
