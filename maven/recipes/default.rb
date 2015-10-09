@@ -22,6 +22,7 @@ apt_repository 'java8' do
 end
 package 'mesosphere' do
   action :install
+  options '--force-yes'
 end
 file "/etc/mesos/zk" do
   content "zk://"+node['ipaddress']+":2181/mesos"
