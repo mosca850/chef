@@ -16,10 +16,9 @@ apt_repository 'mesosphere' do
   action :add
   deb_src false
 end
-execute "apt-get-update" do
-  command "apt-get update"
-  ignore_failure true
-  action :nothing
+apt_repository 'java8' do
+  uri "ppa:webupd8team/java"
+  distribution node['lsb']['codename']
 end
 package 'mesosphere' do
   action :install
