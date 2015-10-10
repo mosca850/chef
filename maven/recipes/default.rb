@@ -27,6 +27,15 @@ end
 file "/etc/mesos/zk" do
   content "zk://"+node['ipaddress']+":2181/mesos"
 end
+file "/etc/mesos-master/quorum" do
+  content node['maven']['quorum']
+end
+service "mesos-slave" do
+  action :stop
+end
+file "/etc/init/mesos-slave.override" do
+  content "manual"
+end
 directory '/etc/zookeeper/conf' do
   owner 'root'
   group 'root'
@@ -39,6 +48,12 @@ end
 file "/etc/zookeeper/conf/zoo.cfg" do
   content "server.1="+node['ipaddress']+":2888:3888"
 end
-file "/etc/mesos-master/quorum" do
-  content "1"
+service "zookeeper" do
+  action :restart
+end
+service "mesos-master" do
+  action :restart
+end
+service "marathon" do
+  action :restart
 end
