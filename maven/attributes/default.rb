@@ -1,1 +1,1 @@
-default['maven']['quorum'] = 2
+default['maven']['quorum'] = "2"
