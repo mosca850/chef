@@ -56,6 +56,7 @@ end
 template 'mesos-master-init' do
   path '/etc/init.d/mesos-master'
   source 'sysvinit_debian.erb'
+  mode '0755'
 end
 service "mesos-master" do
   action :restart
