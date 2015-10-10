@@ -18,7 +18,8 @@ apt_repository 'mesosphere' do
   deb_src false
 end
 apt_repository 'java8' do
-  uri "ppa:webupd8team/java"
+#  uri "ppa:webupd8team/java"
+  uri "ppa:openjdk-r/ppa"
   distribution node['lsb']['codename']
 end
 package 'mesosphere' do
