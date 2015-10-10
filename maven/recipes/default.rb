@@ -53,6 +53,10 @@ end
 service "zookeeper" do
   action :restart
 end
+tempate 'mesos-master-init' do
+  path '/etc/init.d/mesos-master'
+  source 'sysvinit_debian.erb'
+end
 service "mesos-master" do
   action :restart
 end
