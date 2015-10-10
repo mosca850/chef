@@ -7,6 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 include_recipe 'apt::default'
+include_recipe 'java'
 apt_repository 'mesosphere' do
   uri 'http://repos.mesosphere.io/ubuntu'
   components ['main']
@@ -16,13 +17,13 @@ apt_repository 'mesosphere' do
   action :add
   deb_src false
 end
-apt_repository 'java8' do
-  uri "ppa:webupd8team/java"
-  distribution node['lsb']['codename']
-end
+#apt_repository 'java8' do
+#  uri "ppa:webupd8team/java"
+#  distribution node['lsb']['codename']
+#end
 package 'mesosphere' do
   action :install
-  options '--force-yes'
+#  options '--force-yes'
 end
 file "/etc/mesos/zk" do
   content "zk://"+node['ipaddress']+":2181/mesos"
